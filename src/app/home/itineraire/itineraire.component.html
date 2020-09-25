@@ -1,0 +1,53 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="card col-6" *ngFor="let itineraire of itineraires">
+            <div class="card-header">
+            {{itineraire.nom}}
+            </div>
+            <div class="card-body ">
+            <p class="card-text">Niveau : {{itineraire.niveau}}</p>
+                <div class="row">
+                    <a class="btn btn-primary ml-3" (click)="saveData(itineraire.id)">Voir les étapes</a>
+                    <a class="btn btn-primary ml-3" (click)="supprimerItineraire(itineraire.id)">supprimer</a>
+                    <a class="btn btn-primary ml-3" (click)="afficherModifier(itineraire.id)">modifier</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="affichageForm">
+    <h3 class="mt-5 mb-1 ml-3">Ajouter un itineraire</h3>
+    <form class="ml-3" [formGroup]="itineraireForm">
+        <div class="form-group" >
+          <label for="nom">Nom de l'itineraire</label>
+          <input type="text" class="form-control" id="" formControlName="nom">
+        </div>
+        <div class="form-group">
+          <label for="niveau">Niveau</label>
+          <input type="text" class="form-control" id="" formControlName="niveau">
+          <small id="" class="form-text text-muted">faible,moyen, elevé</small>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Créer</button>
+    </form>
+</div>
+
+
+<div *ngIf="!affichageForm">
+    <h3 class="mt-5 mb-1 ml-3">Modifier un itineraire</h3>
+    <form class="ml-3" [formGroup]="itineraireForm">
+        <div class="form-group" >
+          <label for="nom">Nom de l'itineraire</label>
+          <input type="text" class="form-control" id="" formControlName="nom" placeholder="{{postName}}">
+        </div>
+        <div class="form-group">
+          <label for="niveau">Niveau</label>
+          <input type="text" class="form-control" id="" formControlName="niveau" placeholder="{{postLevel}}">
+          <small id="" class="form-text text-muted">faible,moyen, elevé</small>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="modifier()">Modifier</button>
+        <button type="submit" class="btn btn-primary ml-3" (click)="annuler()">Annuler</button>
+    </form>
+</div>
+
+
